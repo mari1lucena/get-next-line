@@ -6,7 +6,7 @@
 /*   By: mlucena- <mlucena-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:43:01 by mlucena-          #+#    #+#             */
-/*   Updated: 2025/05/13 20:32:56 by mlucena-         ###   ########.fr       */
+/*   Updated: 2025/05/15 20:45:34 by mlucena-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,44 @@ int	ft_check(char *buffer)
 	return (0);
 }
 
-void cleaning(char *buffer)
+void	ft_buffer_organize(char *buffer)
 {
 	int	x;
+	int	j;
 
 	x = 0;
+	j = 0;
 	while(buffer[x] && buffer[x] != '\n')
 		x++;
 	while(buffer[x])
 	{
-		
+		x++;
+		buffer[j] = buffer[x];
+		x++;
+		j++;
 	}
+	buffer[j] = '\0';
+}
+
+char	*ft_join_all(char *line, char *buffer)
+{
+	int	j;
+	char *new;
+
+	j = 0;
+	new = malloc((ft_strlen(line) + ft_strlen(buffer) + 1) * (sizeof(char *)));
+	if(!new)
+		return (NULL);
+	while(buffer[j])
+	{
+		new[j] = buffer[j];
+		j++;
+	}
+	if (buffer[j] == '\n')
+	{
+		new[j] = '\n';
+		j++;
+	}
+	new[j] = '\0';
+	return (new);
 }

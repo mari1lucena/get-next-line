@@ -6,7 +6,7 @@
 /*   By: mlucena- <mlucena-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:42:25 by mlucena-          #+#    #+#             */
-/*   Updated: 2025/05/13 19:27:21 by mlucena-         ###   ########.fr       */
+/*   Updated: 2025/05/15 20:09:23 by mlucena-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,14 @@ char	*get_next_line(int fd)
 	char	*line;
 
 	line = NULL;
+	if (*buffer != '\0')
+		line = ft_join_all(line, buffer);
 	while (read(fd, buffer, BUFFER_SIZE) > 0)
 	{
 		line = ft_join(line, buffer);
 		if (ft_check(buffer) == 1)
 		{
+			ft_buffer_organize(buffer);
 			return (line);
 		}
 	}
@@ -36,4 +39,14 @@ int main()
 
 	str = get_next_line(fd);
 	printf("%s", str);
+	free(str);
+
+	str = get_next_line(fd);
+	printf("%s", str);
+	free(str);
+
+	str = get_next_line(fd);
+	printf("%s", str);
+	free(str);
+
 }
