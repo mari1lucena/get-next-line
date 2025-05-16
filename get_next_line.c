@@ -16,37 +16,45 @@ char	*get_next_line(int fd)
 {
 	static char buffer[BUFFER_SIZE + 1];
 	char	*line;
+	int		len;
 
 	line = NULL;
-	if (*buffer != '\0')
-		line = ft_join_all(line, buffer);
-	while (read(fd, buffer, BUFFER_SIZE) > 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	while ((*buffer || read(fd, buffer, BUFFER_SIZE)) > 0)
 	{
 		line = ft_join(line, buffer);
-		if (ft_check(buffer) == 1)
-		{
-			ft_buffer_organize(buffer);
+		if (!line)
+			return (free(line), NULL);
+		ft_buffer_organize(buffer);
+		len = ft_strlen(line);
+		if (line[len - 1] == '\n')
 			return (line);
-		}
 	}
 	return (line);
 }
 
-int main()
+int main(void)
 {
-	int fd = open("test.txt", O_RDONLY);
-	char	*str;
-
-	str = get_next_line(fd);
-	printf("%s", str);
-	free(str);
-
-	str = get_next_line(fd);
-	printf("%s", str);
-	free(str);
-
-	str = get_next_line(fd);
-	printf("%s", str);
-	free(str);
-
+    int fd = open("test.txt", O_RDONLY);
+    char *line;
+	int		i = 0;
+	
+    if (fd == -1)
+    {
+        printf("Error opening file");
+        return 1;
+	}
+    while (i < 35)
+    {
+		line = get_next_line(fd);
+		if (line != NULL)
+		{
+    	    printf("line %d: %s", i, line);
+    		free(line);
+		}
+		i++;
+    }
+    close(fd);
+    return 0;
 }

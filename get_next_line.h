@@ -20,7 +20,7 @@
 # include <stddef.h>
 # include <stdint.h>
 # include <fcntl.h>
-int		ft_check(char *buffer);
+int		ft_check_newline(char *buffer);
 char	*ft_join(char *line, char *buffer);
 int		ft_strlen(char  *str);
 char	*get_next_line(int fd);
@@ -28,7 +28,7 @@ void	ft_buffer_organize(char *buffer);
 char	*ft_join_all(char *line, char *buffer);
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 100
 # endif
 
 #endif
