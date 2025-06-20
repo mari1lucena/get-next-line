@@ -6,7 +6,7 @@
 /*   By: mlucena- <mlucena-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/13 15:42:49 by mlucena-          #+#    #+#             */
-/*   Updated: 2025/06/05 05:30:33 by mlucena-         ###   ########.fr       */
+/*   Updated: 2025/06/20 11:09:51 by mlucena-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # endif
 
 char	*ft_join(char *line, char *buffer);
-int		ft_strlen(char  *str);
+int		ft_strlen(char *str);
 char	*get_next_line(int fd);
 void	ft_buffer_organize(char *buffer);
 

@@ -6,7 +6,7 @@
 /*   By: mlucena- <mlucena-@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 04:36:57 by mlucena-          #+#    #+#             */
-/*   Updated: 2025/06/05 05:49:31 by mlucena-         ###   ########.fr       */
+/*   Updated: 2025/06/20 12:06:09 by mlucena-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_strlen(char *str)
 {
-	int x;
+	int	x;
 
 	if (!str)
 		return (0);
@@ -26,7 +26,7 @@ int	ft_strlen(char *str)
 	return (x);
 }
 
-char *ft_join(char *line, char *buffer)
+char	*ft_join(char *line, char *buffer)
 {
 	int		x;
 	int		j;
@@ -36,13 +36,13 @@ char *ft_join(char *line, char *buffer)
 	j = 0;
 	new = malloc((ft_strlen(line) + ft_strlen(buffer) + 1) * (sizeof(char)));
 	if (!new)
-		return (free(line), NULL); //new??
-	while(line && line[x] != '\0')
+		return (free(line), NULL);
+	while (line && line[x] != '\0')
 	{
 		new[x] = line[x];
 		x++;
 	}
-	while(buffer[j] && buffer[j] != '\n')
+	while (buffer[j] && buffer[j] != '\n')
 	{
 		new[x + j] = buffer[j];
 		j++;
@@ -54,23 +54,18 @@ char *ft_join(char *line, char *buffer)
 	return (new);
 }
 
-// int main(void)
-// {
-//     int fd = open("test.txt", O_RDONLY);
-//     char *line;
-// 	int		i = 0;
+void	ft_buffer_organize(char *buffer)
+{
+	int	x;
+	int	j;
 
-//     while (i < 35)
-//     {
-// 		line = get_next_line(fd);
-//     	printf("s:%s", line);
-// 		fd = -1;
-// 		if (line != NULL)
-// 		{
-//     		free(line);
-// 		}
-// 		i++;
-//     }
-//     close(fd);
-//     return 0;
-// }
+	x = 0;
+	j = 0;
+	while (buffer[x] != '\0' && buffer[x] != '\n')
+		x++;
+	if (buffer[x] == '\n')
+		x++;
+	while (buffer[j])
+		buffer[j++] = buffer[x++];
+	buffer[j] = '\0';
+}
